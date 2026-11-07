@@ -4,7 +4,7 @@
 <header><b>ESP32</b> / Mensagens</header><main><small>PAINEL REMOTO</small><h1>Envie para o seu ESP32.</h1><p>Digite sua mensagem e clique em Enviar.</p><section><form id="form"><label>Sua mensagem<textarea id="message" maxlength="500" required placeholder="O que você quer enviar ao dispositivo?"></textarea><small id="count">0/500 caracteres</small></label><button id="send">Enviar</button><p id="status" role="status" aria-live="polite"></p></form></section><footer>O envio ao serviço não confirma a entrega ao dispositivo.</footer></main>
 <script>
 const ENDPOINT = "https://esp32s-online.nicolasplays53.workers.dev/message";
-const SEND_TOKEN = "";
+const SEND_TOKEN = "a";
 const form=document.getElementById("form"),message=document.getElementById("message"),button=document.getElementById("send"),statusEl=document.getElementById("status");
 message.addEventListener("input",()=>document.getElementById("count").textContent=message.value.length+"/500 caracteres");
 form.addEventListener("submit",async e=>{
