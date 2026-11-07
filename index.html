@@ -10,7 +10,7 @@ message.addEventListener("input",()=>document.getElementById("count").textConten
 form.addEventListener("submit",async e=>{
 e.preventDefault();if(button.disabled)return;
 statusEl.style.color="#ffb7b7";
-if(!message.value.trim()){statusEl.textContent="Digite uma mensagem.";return}
+if(!message.value.trim()){statusEl.textContent="Digite uma mensagem.";return}   
 button.disabled=true;button.textContent="Enviando…";statusEl.textContent="";
 const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
 try{const res=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+SEND_TOKEN},body:JSON.stringify({message:message.value.trim()})});
