@@ -97,14 +97,15 @@
         if (iconId) payload.icon = iconId;
 
         try {
-            const res = await fetch(WORKER_URL, {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer 1234"
-                },
-                body: JSON.stringify(payload)
-            });
+           const res = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: { 
+        "Content-Type": "application/json",
+        "Authorization": "Bearer COLE_O_TOKEN_EXATO_AQUI"
+    },
+    body:```javascript
+JSON.stringify(payload)
+    });
 
             const data = await res.json();
 
