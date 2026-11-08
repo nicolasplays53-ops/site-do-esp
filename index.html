@@ -47,7 +47,7 @@
 <script>
     // CONFIGURAÇÃO OBRIGATÓRIA
     const WORKER_URL = "https://esp32s-online.nicolasplays53.workers.dev/message";
-    // ^^^^^^^^^^^^ COLOQUE A URL DO SEU WORKER AQUI ^^^^^^^^^^^^
+    const DEVICE_TOKEN = "a"; // COLOQUE AQUI O MESMO TOKEN QUE ESTÁ NO CLOUDFLARE
 
     const icons = [
         ["ovo", "🥚"], ["coracao", "❤️"], ["estrela", "⭐"], ["caveira", "💀"], ["sol", "☀️"],
@@ -97,15 +97,14 @@
         if (iconId) payload.icon = iconId;
 
         try {
-           const res = await fetch(WORKER_URL, {
-    method: "POST",
-    headers: { 
-        "Content-Type": "application/json",
-        "Authorization": "Bearer COLE_O_TOKEN_EXATO_AQUI"
-    },
-    body:```javascript
-JSON.stringify(payload)
-    });
+            const res = await fetch(WORKER_URL, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + DEVICE_TOKEN
+                },
+                body: JSON.stringify(payload)
+            });
 
             const data = await res.json();
 
@@ -114,7 +113,7 @@ JSON.stringify(payload)
                 input.value = "";
                 lastSendTime = now;
             } else {
-                setStatus(data.error || "Erro ao enviar.", "error");
+                setStatus(data.error || ("Erro ao enviar (" + res.status + ")."), "error");
             }
         } catch (err) {
             setStatus("Falha de conexão. Verifique a internet.", "error");
